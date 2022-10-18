@@ -1,0 +1,4 @@
+
+
+class Player:
+    isX = True
