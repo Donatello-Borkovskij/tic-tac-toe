@@ -1,5 +1,5 @@
 """
-Test module for Player.py
+Test module for player.py
 """
 import unittest
 
