@@ -79,23 +79,23 @@ while run:
             player.set_is_x(isX)
 
             print("works")
-        player.get_is_x()
     # menu with grid size
     elif player_is_choosing_grid:
         screen.fill(bg)
 
         if button_3.draw(screen):
-            table = grid.Grid(3)
+            table = grid.Grid(3, x_img, o_img, player.get_is_x())
             player_is_choosing_grid = False
         elif button_4.draw(screen):
-            table = grid.Grid(4)
+            table = grid.Grid(4, x_img, o_img, player.get_is_x())
             player_is_choosing_grid = False
         elif button_5.draw(screen):
-            table = grid.Grid(5)
+            table = grid.Grid(5, x_img, o_img, player.get_is_x())
             player_is_choosing_grid = False
     # tic tac toe game
     else:
-        table.draw_grid(screen, screen_width, screen_height, (50, 50, 50), (255, 255, 200))
+        table.draw_grid(screen, screen_width, screen_height, (50, 50, 50), bg)
+        table.draw_markers(screen)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
