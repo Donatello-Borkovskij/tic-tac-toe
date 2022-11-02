@@ -8,20 +8,27 @@ class Grid:
     game_over = False
     tie = False
     winner = 0
+    size = 0
 
-    def __init__(self, size, x, o, player):
-        self.size = size
+    def __init__(self, x, o, player):
         self.x = x
         self.o = o
         self.player = player
+
+    def set_size(self, size):
+        self.size = size
 
         for y in range(self.size):
             row = [0] * self.size
             self.markers.append(row)
         print(self.markers)
 
-    def __del__(self):
-        print('grid destroyed')
+    def set_markers(self, markers):
+        self.markers = markers
+
+    def get_markers(self):
+        return self.markers
+
     # def get_game_over(self):
     #     return self.game_over
 

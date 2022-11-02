@@ -31,8 +31,9 @@ line_width = 5
 clicked = True
 pos = []
 markers = []
-# create player
+# create objects
 player = player.Player()
+table = grid.Grid(x_img, o_img, player.get_is_x())
 
 # while player_is_choosing:
 #     screen.fill(bg)
@@ -84,13 +85,16 @@ while run:
         screen.fill(bg)
 
         if button_3.draw(screen):
-            table = grid.Grid(3, x_img, o_img, player.get_is_x())
+            #table = grid.Grid(3, x_img, o_img, player.get_is_x())
+            table.set_size(3)
             player_is_choosing_grid = False
         elif button_4.draw(screen):
-            table = grid.Grid(4, x_img, o_img, player.get_is_x())
+            #table = grid.Grid(4, x_img, o_img, player.get_is_x())
+            table.set_size(4)
             player_is_choosing_grid = False
         elif button_5.draw(screen):
-            table = grid.Grid(5, x_img, o_img, player.get_is_x())
+            #table = grid.Grid(5, x_img, o_img, player.get_is_x())
+            table.set_size(5)
             player_is_choosing_grid = False
     # tic tac toe game
     else:
