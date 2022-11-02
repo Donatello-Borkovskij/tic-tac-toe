@@ -20,6 +20,8 @@ class Grid:
             self.markers.append(row)
         print(self.markers)
 
+    def __del__(self):
+        print('grid destroyed')
     # def get_game_over(self):
     #     return self.game_over
 
@@ -62,7 +64,7 @@ class Grid:
                     y_pos += 1
                 x_pos += 1
 
-    def draw_grid(self, screen, screen_width, screen_height, grid, bg):
+    def draw_grid(self, screen, screen_width, screen_height, grid, bg, font):
         # get mouse position
         pos = pygame.mouse.get_pos()
         screen.fill(bg)
@@ -143,7 +145,9 @@ class Grid:
                             self.clicked = False
                     except IndexError:
                         print('ooops')
-        # else:
+            self.draw_markers(screen)
+        else:
+            self.draw_game_over(screen, screen_width, screen_height, font)
 
     def winner_winner_chicken_dinner(self, x, y):
         try:
@@ -366,4 +370,15 @@ class Grid:
         print("x = {0}, y = {1}".format(x, y))
         print("game over = {0}".format(self.game_over))
 
-    # def draw_game_over(self):
+    def draw_game_over(self, screen, screen_width, screen_height, font):
+        if self.tie:
+            end_img = font.render("It's a tie!", True, (0, 0, 0))
+            screen.blit(end_img, (screen_width // 2 - 25, screen_height // 2 - 120))
+        else:
+            end_img = font.render("has won!", True, (0, 0, 0))
+            quit_img = font.render("press 'q' to quit!", True, (0, 0, 0))
+            #restart_img = font.render("press 'space' to restart", True, (0, 0, 0))
+            screen.blit(self.winner, (screen_width // 2 - 125, screen_height // 2 - 150))
+            screen.blit(end_img, (screen_width // 2, screen_height // 2 - 120))
+            screen.blit(quit_img, (screen_width // 2 - 100, screen_height // 2))
+            #screen.blit(restart_img, (screen_width // 2 - 150, screen_height // 2 + 100))

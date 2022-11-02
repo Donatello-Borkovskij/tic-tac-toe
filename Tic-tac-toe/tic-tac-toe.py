@@ -94,19 +94,20 @@ while run:
             player_is_choosing_grid = False
     # tic tac toe game
     else:
-        table.draw_grid(screen, screen_width, screen_height, (50, 50, 50), bg)
-        table.draw_markers(screen)
-
+        table.draw_grid(screen, screen_width, screen_height, (50, 50, 50), bg, font)
+        #table.draw_markers(screen)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        # if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
-        #    clicked = True
-        # if event.type == pygame.MOUSEBUTTONUP and clicked == True:
-        #    clicked = False
-        #    pos = pygame.mouse.get_pos()
-        #    cell_x = pos[0]
-        #    cell_y = pos[1]
+        if event.type == pygame.KEYDOWN:
+            if event.key == K_q:
+                run = False
+                print('q')
+            # if event.key == K_SPACE:
+            #     player_is_choosing = True
+            #     player_is_choosing_grid = True
+            #     del table
+            #     print('space')
 
     pygame.display.update()
 
