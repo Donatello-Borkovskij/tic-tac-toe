@@ -35,26 +35,6 @@ markers = []
 player = player.Player()
 table = grid.Grid(x_img, o_img, player.get_is_x())
 
-# while player_is_choosing:
-#     screen.fill(bg)
-#
-#     pygame.draw.line(screen, (0, 0, 0), (screen_width / 2, 0), (screen_width / 2, screen_height), line_width)
-#     # pygame.draw.line(screen, (0, 0, 0), (0, screen_height/2), (screen_width, screen_height/2), line_width)
-#
-#     if x_button.draw(screen):
-#         player_is_choosing = False
-#
-#         print("works")
-#     elif o_button.draw(screen):
-#         player_is_choosing = False
-#
-#         print("works")
-#
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             player_is_choosing = False
-#     pygame.display.update()
-
 # game loop
 player_is_choosing = True
 player_is_choosing_grid = True
@@ -107,11 +87,12 @@ while run:
             if event.key == K_q:
                 run = False
                 print('q')
-            # if event.key == K_SPACE:
-            #     player_is_choosing = True
-            #     player_is_choosing_grid = True
-            #     del table
-            #     print('space')
+            if event.key == K_SPACE:
+                player_is_choosing = True
+                player_is_choosing_grid = True
+                table.set_tie(False)
+                table.set_game_over(False)
+                print('space')
 
     pygame.display.update()
 

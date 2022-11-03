@@ -17,10 +17,11 @@ class Grid:
 
     def set_size(self, size):
         self.size = size
-
+        markers = []
         for y in range(self.size):
             row = [0] * self.size
-            self.markers.append(row)
+            markers.append(row)
+        self.markers = markers
         print(self.markers)
 
     def set_markers(self, markers):
@@ -29,8 +30,17 @@ class Grid:
     def get_markers(self):
         return self.markers
 
-    # def get_game_over(self):
-    #     return self.game_over
+    def set_game_over(self, game_over):
+        self.game_over = game_over
+
+    def get_game_over(self):
+        return self.game_over
+
+    def set_tie(self, tie):
+        self.tie = tie
+
+    def get_tie(self):
+        return self.tie
 
     def draw_markers(self, screen):
         if self.size == 5:
@@ -359,19 +369,18 @@ class Grid:
                     self.game_over = True
                     print('24')
                     return
-            else:
-                if self.game_over == False:
-                    self.tie = True
-                    for row in self.markers:
-                        for i in row:
-                            if i == 0:
-                                self.tie = False
-                    # if it is a tie, then call game over and set winner to 0 (no one)
-                    if self.tie == True:
-                        self.game_over = True
-                        self.winner = 0
         except IndexError:
             print('ooops 5')
+        if self.game_over == False:
+            self.tie = True
+            for row in self.markers:
+                for i in row:
+                    if i == 0:
+                        self.tie = False
+            # if it is a tie, then call game over and set winner to 0 (no one)
+            if self.tie == True:
+                self.game_over = True
+                self.winner = 0
 
         print(self.markers)
         print("x = {0}, y = {1}".format(x, y))
@@ -380,12 +389,16 @@ class Grid:
     def draw_game_over(self, screen, screen_width, screen_height, font):
         if self.tie:
             end_img = font.render("It's a tie!", True, (0, 0, 0))
-            screen.blit(end_img, (screen_width // 2 - 25, screen_height // 2 - 120))
+            quit_img = font.render("press 'q' to quit!", True, (0, 0, 0))
+            restart_img = font.render("press 'space' to restart", True, (0, 0, 0))
+            screen.blit(end_img, (screen_width // 2 - 50, screen_height // 2 - 120))
+            screen.blit(quit_img, (screen_width // 2 - 100, screen_height // 2))
+            screen.blit(restart_img, (screen_width // 2 - 150, screen_height // 2 + 100))
         else:
             end_img = font.render("has won!", True, (0, 0, 0))
             quit_img = font.render("press 'q' to quit!", True, (0, 0, 0))
-            #restart_img = font.render("press 'space' to restart", True, (0, 0, 0))
+            restart_img = font.render("press 'space' to restart", True, (0, 0, 0))
             screen.blit(self.winner, (screen_width // 2 - 125, screen_height // 2 - 150))
             screen.blit(end_img, (screen_width // 2, screen_height // 2 - 120))
             screen.blit(quit_img, (screen_width // 2 - 100, screen_height // 2))
-            #screen.blit(restart_img, (screen_width // 2 - 150, screen_height // 2 + 100))
+            screen.blit(restart_img, (screen_width // 2 - 150, screen_height // 2 + 100))
