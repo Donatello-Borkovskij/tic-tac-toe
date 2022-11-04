@@ -14,8 +14,8 @@ pygame.display.set_caption('Tic-tac-toe')
 # define font
 font = pygame.font.SysFont(None, 40)
 # load button images
-x_img = pygame.image.load('X.png')
-o_img = pygame.image.load('O.png')
+x_img = pygame.image.load('Tic-tac-toe/imgs/X.png')
+o_img = pygame.image.load('Tic-tac-toe/imgs/O.png')
 img_3 = font.render('3x3', True, (0, 0, 0))
 img_4 = font.render('4x4', True, (0, 0, 0))
 img_5 = font.render('5x5', True, (0, 0, 0))

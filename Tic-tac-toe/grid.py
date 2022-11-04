@@ -42,6 +42,9 @@ class Grid:
     def get_tie(self):
         return self.tie
 
+    def get_winner(self):
+        return self.winner
+
     def draw_markers(self, screen):
         if self.size == 5:
             x_pos = 0
